@@ -91,19 +91,19 @@ attr_accessor :id, :name, :breed
 
 
   def self.create(name:, breed:)
-    new_dog = Dog.new(name: name, breed: breed)
-    new_dog.save
-    new_dog
+    dog = Dog.new(name: name, breed: breed)
+    dog.save
+    dog
   end
 
   def self.find_or_create_by(name:, breed:)
     sql = "SELECT * FROM dogs WHERE name = ? AND breed = ? LIMIT 1"
     result = DB[:conn].execute(sql, name, breed)
     if result.empty?
-      new_dog = Dog.create(name: name, breed: breed)
+      dog = Dog.create(name: name, breed: breed)
     else
-      new_dog_data = result[0]
-      new_dog = Dog.new_from_db(new_dog_data)
+      dog_data = result[0]
+      dog = Dog.new_from_db(new_dog_data)
     end
   end
 
