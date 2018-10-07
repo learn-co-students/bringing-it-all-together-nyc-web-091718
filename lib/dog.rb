@@ -103,7 +103,7 @@ attr_accessor :id, :name, :breed
       dog = Dog.create(name: name, breed: breed)
     else
       dog_data = result[0]
-      dog = Dog.new_from_db(new_dog_data)
+      dog = Dog.new_from_db(dog_data)
     end
   end
 
